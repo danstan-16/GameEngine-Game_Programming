@@ -11,6 +11,7 @@
 #include "Texture.h"
 
 #include "ResourceManager.h"
+#include "Resource.h"
 
 #include "Json.h"
 #include "StringUtils.h"

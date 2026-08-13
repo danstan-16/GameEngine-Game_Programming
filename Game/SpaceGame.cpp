@@ -13,6 +13,23 @@ bool SpaceGame::Initialize()
 
 	m_scene = new nu::Scene();
 	m_scene->SetGame(this);
+	m_scene->Load("data/scene.json");
+
+	json::document_t document;
+	if (json::Load("data/scene.json", document))
+	{
+		std::string type;
+		json::Read(document, "type", type);
+
+		auto actor = Factory::Instance().Create<Actor>(type);
+	    actor->Read(document);
+
+	    std::cout << actor->GetName() << std::endl;
+	    std::cout << actor->GetTag() << std::endl;
+	    std::cout << actor->GetTransform().rotation << std::endl;
+
+		Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
+	}
 
 	m_titleFont = new Font();
 	m_titleFont->Load("fonts/airstrike.ttf", 64);
@@ -33,7 +50,6 @@ bool SpaceGame::Initialize()
 
 	Engine::Get().GetAudio().AddSound("explosion", "../../Build/Assets/audio/explosion.mp3");
 	Engine::Get().GetAudio().AddSound("pewpew", "../../Build/Assets/audio/pewpew.mp3");
-	//Engine::Get().GetAudio().AddSound("theme-music", "../../Build/Assets/audio/theme-music.mp3");
 
 
 	return true;
@@ -132,44 +148,28 @@ void SpaceGame::Draw(nu::Renderer& renderer)
 
 void SpaceGame::SpawnPlayer()
 {
-	std::string png = "textures/player_Ship.png";
-
-	PlayerDesc playerDesc;
-	playerDesc.name = "Player";
-	//playerDesc.model = Assets::playerModel;
-	playerDesc.texture = Resources().Get<Texture>(png, Engine::Get().GetRenderer());;
-	playerDesc.transform = Transform{ Vector2{ 640.0f, 512.0f }, 0.0f, 15.0f };
-	playerDesc.damping = 3.0f;
-	playerDesc.speed = 2000.0f;
-	playerDesc.velocity = Vector2{ 0.0f, 0.0f };
-
-	std::unique_ptr<Player> player = std::make_unique<Player>(playerDesc);
-	m_scene->AddActor(std::move(player));
+	auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
+	m_scene->AddActor(std::move(actor));
 }
 
 void SpaceGame::SpawnEnemy()
 {
 	int model = RandomInt(3);
-	EnemyDesc enemyDesc;
-	enemyDesc.name = "Enemy";
+
 	if (model == 0) {
-		enemyDesc.texture = Resources().Get<Texture>("textures/enemy_Ship01.jpg", Engine::Get().GetRenderer());
+		auto actor = Factory::Instance().Create<Actor>("Enemy01");
+		m_scene->AddActor(std::move(actor));
 	}
 	else if (model == 1)
 	{
-		enemyDesc.texture = Resources().Get<Texture>("textures/enemy_Ship02.jpg", Engine::Get().GetRenderer());
+		auto actor = Factory::Instance().Create<Actor>("Enemy02");
+		m_scene->AddActor(std::move(actor));
 	}
 	else
 	{
-		enemyDesc.texture = Resources().Get<Texture>("textures/enemy_Ship03.jpg", Engine::Get().GetRenderer());
+		auto actor = Factory::Instance().Create<Actor>("Enemy03");
+		m_scene->AddActor(std::move(actor));
 	}
-	
-	enemyDesc.transform = Transform{ Vector2{ RandomFloat((float)Engine::Get().GetRenderer().GetWidth()),
-												RandomFloat((float)Engine::Get().GetRenderer().GetHeight())}, 0.0f, 15.0f };
-	enemyDesc.speed = 100000.0f;
-	enemyDesc.damping = 3.0f;
-
-	m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc)));
 }
 
 void SpaceGame::OnPlayerDead()

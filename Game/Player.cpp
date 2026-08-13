@@ -6,6 +6,7 @@
 #include "Bullet.h"
 #include "SpaceGame.h"
 #include "Model.h"
+#include "Resource.h"
 
 void Player::Update(float dt)
 {
@@ -50,7 +51,8 @@ void Player::Update(float dt)
 		BulletDesc desc;
 		desc.name = "Bullet";
 		desc.tag = "playerBullet";
-		desc.model = Assets::bulletModel;
+		//desc.model = Assets::bulletModel;
+		desc.texture = nu::Resources().Get<nu::Texture>("textures/bullet.png", nu::Engine::Get().GetRenderer());
 		desc.transform = m_transform;
 		desc.transform.scale = 7.0f;
 		desc.speed = 1000.0f;
@@ -88,7 +90,7 @@ void Player::Update(float dt)
 
 void Player::OnCollision(Actor* other)
 {
-	if(other->GetName() == "Enemy")
+	if(other->GetTag() == "Enemy")
 	{
 		SetDestroyed();
 		((SpaceGame*)m_scene->GetGame())->OnPlayerDead();
