@@ -19,7 +19,7 @@ namespace nu
 		void Draw(Renderer& renderer, float x, float y) ;
 
 	private:
-		res_t<Font> m_font{ nullptr };
+		res_t<Font> m_font;
 		SDL_Texture* m_texture{ nullptr };
 	};
 }

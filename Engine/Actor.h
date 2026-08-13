@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include "Resource.h"
+#include "Object.h"
 
 namespace nu
 {
@@ -21,7 +22,7 @@ namespace nu
 		res_t<Model> model;
 		res_t<Texture> texture;
 	};
-	class Actor
+	class Actor : public Object
 	{
 	public:
 		Actor() = default;
@@ -60,6 +61,7 @@ namespace nu
 		void SetDestroyed(bool destroy = true) { m_destroyed = destroy; }
 		bool GetDestroyed() const { return m_destroyed; }
 
+		virtual void Read(const nu::json::value_t& value) override;
 
 		friend Scene;
 

@@ -6,13 +6,6 @@ using namespace nu;
 
 namespace Assets
 {
-	std::shared_ptr<nu::Texture> Assets::GetPlayerTexture() 
-	{
-		std::shared_ptr<nu::Texture> texture = std::make_shared<nu::Texture>();
-		texture->Load("texture/space_background.png", Engine::Get().GetRenderer());
-		return texture;
-	}
-
 	Mesh player{ {
 			Vector2{2, 0},
 			Vector2{0, 1},
@@ -25,7 +18,7 @@ namespace Assets
 			Color {255.0f, 255.0f, 255.0f}
 	};
 
-	std::shared_ptr<Model> playerTexture = std::make_shared<Model>(std::vector<Mesh>{player});
+	std::shared_ptr<Model> playerModel = std::make_shared<Model>(std::vector<Mesh>{player});
 
 	Mesh enemyBody1{ {
 			Vector2{2, 0},

@@ -132,9 +132,12 @@ void SpaceGame::Draw(nu::Renderer& renderer)
 
 void SpaceGame::SpawnPlayer()
 {
+	std::string png = "textures/player_Ship.png";
+
 	PlayerDesc playerDesc;
 	playerDesc.name = "Player";
-	playerDesc.model = Assets::playerTexture;
+	//playerDesc.model = Assets::playerModel;
+	playerDesc.texture = Resources().Get<Texture>(png, Engine::Get().GetRenderer());;
 	playerDesc.transform = Transform{ Vector2{ 640.0f, 512.0f }, 0.0f, 15.0f };
 	playerDesc.damping = 3.0f;
 	playerDesc.speed = 2000.0f;
@@ -150,15 +153,15 @@ void SpaceGame::SpawnEnemy()
 	EnemyDesc enemyDesc;
 	enemyDesc.name = "Enemy";
 	if (model == 0) {
-		enemyDesc.model = Assets::enemyModel1;
+		enemyDesc.texture = Resources().Get<Texture>("textures/enemy_Ship01.jpg", Engine::Get().GetRenderer());
 	}
 	else if (model == 1)
 	{
-		enemyDesc.model = Assets::enemyModel2;
+		enemyDesc.texture = Resources().Get<Texture>("textures/enemy_Ship02.jpg", Engine::Get().GetRenderer());
 	}
 	else
 	{
-		enemyDesc.model = Assets::enemyModel3;
+		enemyDesc.texture = Resources().Get<Texture>("textures/enemy_Ship03.jpg", Engine::Get().GetRenderer());
 	}
 	
 	enemyDesc.transform = Transform{ Vector2{ RandomFloat((float)Engine::Get().GetRenderer().GetWidth()),

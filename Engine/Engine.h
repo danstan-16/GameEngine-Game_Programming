@@ -6,13 +6,16 @@
 #include "Transform.h"
 #include "MathUtils.h"
 #include "File.h"
-#include "Json.h"
-#include "StringUtils.h"
 
 #include "Text.h"
 #include "Texture.h"
 
-//#include "Factory.h"
+#include "ResourceManager.h"
+
+#include "Json.h"
+#include "StringUtils.h"
+
+#include "Factory.h"
 
 //systems
 #include "Random.h"
@@ -20,7 +23,6 @@
 #include "GameTime.h"
 #include "Audio.h"
 #include "ParticleSystem.h"
-#include "ResourceManager.h"
 
 // framework
 #include "Actor.h"

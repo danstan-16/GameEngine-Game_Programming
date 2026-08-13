@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Resource.h"
 
 struct TTF_Font;
 

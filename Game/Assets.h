@@ -5,12 +5,7 @@
 
 namespace Assets
 {
-	class Assets 
-	{
-	public:
-		std::shared_ptr<nu::Texture> GetPlayerTexture();
-	};
-	extern std::shared_ptr<nu::Model> playerTexture;
+	extern std::shared_ptr<nu::Model> playerModel;
 	extern std::shared_ptr<nu::Model> enemyModel1;
 	extern std::shared_ptr<nu::Model> enemyModel2;
 	extern std::shared_ptr<nu::Model> enemyModel3;

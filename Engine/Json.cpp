@@ -5,10 +5,11 @@
 #include <rapidjson/istreamwrapper.h>
 #include <rapidjson/error/en.h>
 #include <iostream>
+#include <fstream>
 
 namespace nu::json
 {
-    bool Load(const std::string& filename, rapidjson::Document& document)
+    bool Load(const std::string& filename, document_t& document)
     {
         // read the file into a string
         std::string buffer;
@@ -44,12 +45,13 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, int& data)
+    bool Read(const value_t& value, const std::string& name, int& data, bool required)
     {
         // check if the value has the "<name>" and the correct data type
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt())
         {
-            std::cerr << "Could not read JSON value (int):" << name << std::endl;
+            if (required)
+                std::cerr << "Could not read JSON value (int):" << name << std::endl;
             return false;
         }
 
@@ -59,63 +61,104 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, bool& data)
+    bool Read(const value_t& value, const std::string& name, float& data, bool required)
     { // check if the value has the “" and the correct data type
-        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool())
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsNumber())
         {
-            std::cerr << "Could not read JSON value (bool):" << name << std::endl;
+            if(required)
+                std::cerr << "Could not read JSON value (bool):" << name << std::endl;
             return false;
         }
+        // get the data
+        data = value[name.c_str()].GetFloat();
+
+        return true;
+    }
+
+    bool Read(const value_t& value, const std::string& name, bool& data, bool required)
+    {
+        // check if the value has the "<name>" and is an array with 2 elements
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool())
+        {
+            if(required)
+                std::cerr << "Could not read JSON value (Vector2):" << name << std::endl;
+            return false;
+        }
+
         // get the data
         data = value[name.c_str()].GetBool();
 
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, Vector2& data)
+    bool Read(const value_t& value, const std::string& name, std::string& data, bool required)
     {
-        // check if the value has the "<name>" and is an array with 2 elements
-        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2)
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString())
         {
-            std::cerr << "Could not read JSON value (Vector2):" << name << std::endl;
+            if(required)
+                std::cerr << "Could not read JSON value (Vector3): " << name << std::endl;
             return false;
         }
 
-        // get json array object
-        auto& array = value[name.c_str()];
-        // get array values, iterate through each element
-        for (rapidjson::SizeType i = 0; i < array.Size(); i++)
-        {
-            if (!array[i].IsNumber())
-            {
-                std::cerr << "Could not read JSON value (Vector2):" << name << std::endl;
-                return false;
-            }
-
-            // get the data
-            data[i] = array[i].GetFloat();
-        }
-
+        // get the data
+        data = value[name.c_str()].GetString();
+        
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, Vector3& data)
+    bool Read(const value_t& value, const std::string& name, Vector2& data, bool required)
     {
-        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 3)
+        // check if the value has the "<name>" and the correct data type
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2)
         {
-            std::cerr << "Could not read JSON value (Vector3): " << name << std::endl;
+            if (required)
+                std::cerr << "Could not read JSON value (vector2): " << name << std::endl;
             return false;
         }
 
+        // get the data
+        // get the json array object
         auto& array = value[name.c_str()];
-        for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+
+        // get array values, iterate through each element
+        for (rapidjson::SizeType i = 0; i < array.Size(); ++i)
         {
             if (!array[i].IsNumber())
             {
-                std::cerr << "Could not read JSON value (Vector3): " << name << std::endl;
+                if (required)
+                    std::cerr << "Could not read JSON value (vector2): " << name << std::endl;
                 return false;
             }
+            // get the data
+            data[i] = array[i].GetFloat();
+        }
+        return true;
+    }
 
+    bool Read(const value_t& value, const std::string& name, Vector3& data, bool required)
+    {
+        // check if the value has the "<name>" and the correct data type
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 3)
+        {
+            if (required)
+                std::cerr << "Could not read JSON value (vector3): " << name << std::endl;
+            return false;
+        }
+
+        // get the data
+        // get the json array object
+        auto& array = value[name.c_str()];
+
+        // get array values, iterate through each element
+        for (rapidjson::SizeType i = 0; i < array.Size(); ++i)
+        {
+            if (!array[i].IsNumber())
+            {
+                if (required)
+                    std::cerr << "Could not read JSON value (vector3): " << name << std::endl;
+                return false;
+            }
+            // get the data
             data[i] = array[i].GetFloat();
         }
         return true;

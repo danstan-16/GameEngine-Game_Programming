@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Vector2.h"
+#include "Resource.h"
 
 struct SDL_Texture;
 
