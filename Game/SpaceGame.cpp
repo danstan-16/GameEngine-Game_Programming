@@ -134,7 +134,7 @@ void SpaceGame::SpawnPlayer()
 {
 	PlayerDesc playerDesc;
 	playerDesc.name = "Player";
-	playerDesc.model = Assets::playerModel;
+	playerDesc.model = Assets::playerTexture;
 	playerDesc.transform = Transform{ Vector2{ 640.0f, 512.0f }, 0.0f, 15.0f };
 	playerDesc.damping = 3.0f;
 	playerDesc.speed = 2000.0f;

@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "ParticleSystem.h"
 #include "Renderer.h"
+#include "ResourceManager.h"
+#include "Engine.h"
+
+#include <memory>
 
 namespace nu
 {
@@ -24,18 +28,10 @@ namespace nu
 		// update active particles
 		for (auto& particle : m_particles)
 		{
-			if (/*TODO: particle is not active */!particle.active) continue;
+			if (!particle.active) continue;
 
-			// reduce particle.lifespan by subtracting delta time
-			// TODO: particle.lifespan -= delta time
 			particle.lifespan -= dt;
-
-			// set active if (particle.lifespan > 0);
-			// TODO: particle.active = particle lifespan > 0
 			if (particle.lifespan > 0) particle.active = true;
-
-			// update position with velocity (multiply by dt)
-			// TODO: update position += with particle velocity * delta time
 			particle.position += particle.velocity * dt;
 		}
 	}
@@ -47,11 +43,8 @@ namespace nu
 		{
 			if (particle.active)
 			{
-				// set particle color and draw point at current position
-				// TODO: set color with particle color
 				renderer.SetColor(particle.color.r, particle.color.g, particle.color.b);
-				// TODO: draw point with particle position
-				renderer.DrawPoint(particle.position.x, particle.position.y);
+				//renderer.DrawTexture(*m_texture, particle.position.x, particle.position.y, m_transform.rotation, 0.25f);
 			}
 		}
 	}
@@ -60,14 +53,9 @@ namespace nu
 	{
 		// get free particle
 		Particle* freeParticle = GetFreeParticle();
-		// check if free particle is not nullptr
-		if (freeParticle != nullptr)
+		if (freeParticle)
 		{
-			// set free particle object with particle
-			// TODO: dereference (*) free particle and set it to particle
 			*freeParticle = particle;
-			// set particle active
-			// TODO: set free particle active to true
 			freeParticle->active = true;
 		}
 	}

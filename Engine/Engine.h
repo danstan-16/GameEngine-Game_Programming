@@ -6,8 +6,13 @@
 #include "Transform.h"
 #include "MathUtils.h"
 #include "File.h"
+#include "Json.h"
+#include "StringUtils.h"
 
 #include "Text.h"
+#include "Texture.h"
+
+//#include "Factory.h"
 
 //systems
 #include "Random.h"

@@ -2,10 +2,13 @@
 #include "Transform.h"
 #include "Model.h"
 #include <string>
+#include <memory>
+#include "Resource.h"
 
 namespace nu
 {
 	class Scene;
+	class Texture;
 
 	struct ActorDesc
 	{
@@ -15,7 +18,8 @@ namespace nu
 		Vector2 velocity{ 0.0f, 0.0f };
 		float damping{ 0.0f };
 		float lifespan{ 0 };
-		Model model;
+		res_t<Model> model;
+		res_t<Texture> texture;
 	};
 	class Actor
 	{
@@ -28,15 +32,9 @@ namespace nu
 			m_velocity{ actorDesc.velocity },
 			m_damping{ actorDesc.damping },
 			m_lifespan{ actorDesc.lifespan },
-			m_model{ actorDesc.model }
-		{
-		}
-		Actor(const Transform& transform) : m_transform{ transform } {}
-		Actor(const Transform& transform, const Model& model) :
-			m_transform{ transform },
-			m_model{ model }
-		{
-		}
+			m_model{ actorDesc.model },
+			m_texture {actorDesc.texture}
+		{ }
 
 		virtual void Update(float dt);
 		virtual void Draw(const class Renderer& renderer) const;
@@ -75,7 +73,8 @@ namespace nu
 		float m_lifespan{ 0 };
 		bool m_destroyed{ false };
 
-		Model m_model;
+		res_t<Model> m_model;
+		res_t<Texture> m_texture;
 		Scene* m_scene{ nullptr };
 	};
 }

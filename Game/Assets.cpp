@@ -1,10 +1,19 @@
 #include "Assets.h"
+#include "Texture.h"
+#include "Engine.h"
 
 using namespace nu;
 
 namespace Assets
 {
-	Mesh body{{
+	std::shared_ptr<nu::Texture> Assets::GetPlayerTexture() 
+	{
+		std::shared_ptr<nu::Texture> texture = std::make_shared<nu::Texture>();
+		texture->Load("texture/space_background.png", Engine::Get().GetRenderer());
+		return texture;
+	}
+
+	Mesh player{ {
 			Vector2{2, 0},
 			Vector2{0, 1},
 			Vector2{-3, 3},
@@ -13,10 +22,10 @@ namespace Assets
 			Vector2{0, -1},
 			Vector2{2, 0}
 			},
-			Color {0.0f, 255.0f, 0.0f} 
-			};
+			Color {255.0f, 255.0f, 255.0f}
+	};
 
-	Model playerModel{ std::vector<Mesh>{body} };
+	std::shared_ptr<Model> playerTexture = std::make_shared<Model>(std::vector<Mesh>{player});
 
 	Mesh enemyBody1{ {
 			Vector2{2, 0},
@@ -30,7 +39,7 @@ namespace Assets
 			Color {255.0f, 255.0f, 255.0f}
 	};
 
-	Model enemyModel1{ std::vector<Mesh>{enemyBody1} };
+	std::shared_ptr<Model> enemyModel1 = std::make_shared<Model>(std::vector<Mesh>{enemyBody1});
 
 	Mesh enemyBody2{ {
 			Vector2{2, 0},
@@ -44,7 +53,7 @@ namespace Assets
 			Color {255.0f, 255.0f, 255.0f}
 	};
 
-	Model enemyModel2{ std::vector<Mesh>{enemyBody2} };
+	std::shared_ptr<Model> enemyModel2 = std::make_shared<Model>(std::vector<Mesh>{enemyBody2});
 
 	Mesh enemyBody3{ {
 			Vector2{2, 0},
@@ -58,7 +67,7 @@ namespace Assets
 			Color {255.0f, 255.0f, 255.0f}
 	};
 
-	Model enemyModel3{ std::vector<Mesh>{enemyBody3} };
+	std::shared_ptr<Model> enemyModel3 = std::make_shared<Model>(std::vector<Mesh>{enemyBody3});
 
 	Mesh bulletMesh{ {
 			Vector2{ -1, -1 },
@@ -68,5 +77,5 @@ namespace Assets
 			},
 			Color{ 0.0f, 240.0f, 0.0f }
 	};
-	Model bulletModel{ std::vector<Mesh>{bulletMesh} };
+	std::shared_ptr<Model> bulletModel = std::make_shared<Model>(std::vector<Mesh>{bulletMesh});
 }
