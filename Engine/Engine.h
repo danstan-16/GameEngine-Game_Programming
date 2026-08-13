@@ -20,6 +20,7 @@
 #include "GameTime.h"
 #include "Audio.h"
 #include "ParticleSystem.h"
+#include "ResourceManager.h"
 
 // framework
 #include "Actor.h"

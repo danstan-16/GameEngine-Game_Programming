@@ -120,9 +120,6 @@ int main()
     // INITIALIZATION
     Engine::Get().Initialize();
 
-    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    texture->Load("textures/space_background.jpg", Engine::Get().GetRenderer());
-
     SpaceGame game;
     game.Initialize();     
 
@@ -157,7 +154,8 @@ int main()
         Engine::Get().GetRenderer().SetColor(0.0f, 0.0f, 0.0f);
         Engine::Get().GetRenderer().Clear();
 
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 300, 300);
+        auto texture = Resources().Get<Texture>("textures/space_background.jpg", Engine::Get().GetRenderer());
+        Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30, 23.0f, 2.0f);
 
         game.Draw(Engine::Get().GetRenderer());
 

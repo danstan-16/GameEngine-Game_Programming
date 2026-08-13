@@ -17,19 +17,19 @@ bool SpaceGame::Initialize()
 	m_titleFont = new Font();
 	m_titleFont->Load("fonts/airstrike.ttf", 64);
 
-	m_titleText = new Text(m_titleFont);
+	m_titleText = new Text(Resources().GetWithID<Font>("title_font", "fonts/airstrike.ttf", 64.0f));
 	m_titleText->Create(Engine::Get().GetRenderer(), "XENON", Color{ 1.0f, 1.0f, 1.0f });
 
 	m_gameFont = new Font();
 	m_gameFont->Load("fonts/airstrike.ttf", 32);
 
-	m_scoreText = new Text(m_gameFont);
-	m_livesText = new Text(m_gameFont);
+	m_scoreText = new Text(Resources().GetWithID<Font>("score_font", "fonts/airstrike.ttf", 32.0f));
+	m_livesText = new Text(Resources().GetWithID<Font>("lives_font", "fonts/airstrike.ttf", 32.0f));
 
 	m_gameOverFont = new Font();
 	m_gameOverFont->Load("fonts/airstrike.ttf", 64);
 
-	m_gameOverText = new Text(m_gameOverFont);
+	m_gameOverText = new Text(Resources().GetWithID<Font>("gameOver_font", "fonts/airstrike.ttf", 64.0f));
 
 	Engine::Get().GetAudio().AddSound("explosion", "../../Build/Assets/audio/explosion.mp3");
 	Engine::Get().GetAudio().AddSound("pewpew", "../../Build/Assets/audio/pewpew.mp3");
