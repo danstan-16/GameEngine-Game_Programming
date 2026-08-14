@@ -10,7 +10,7 @@
 
 namespace nu
 {
-    bool nu::Renderer::Initialize(const char* name, int width, int height)
+    bool nu::Renderer::Initialize(const char* name, float width, float height)
     {
         m_width = width;
         m_height = height;

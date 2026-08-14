@@ -8,6 +8,8 @@
 #include "Model.h"
 #include "Resource.h"
 
+#include <iostream>
+
 void Player::Update(float dt)
 {
 	// movement
@@ -54,7 +56,7 @@ void Player::Update(float dt)
 		//desc.model = Assets::bulletModel;
 		desc.texture = nu::Resources().Get<nu::Texture>("textures/bullet.png", nu::Engine::Get().GetRenderer());
 		desc.transform = m_transform;
-		desc.transform.scale = 7.0f;
+		desc.transform.scale = 1.0f;
 		desc.speed = 1000.0f;
 		desc.lifespan = 1.0f;
 
@@ -101,5 +103,5 @@ void Player::Read(const nu::json::value_t& value)
 {
 	Actor::Read(value);
 
-	JSON_READ_NAME(value, "speed", m_speed);
+	JSON_READ_NAME(value, "speed", m_speed);	
 }

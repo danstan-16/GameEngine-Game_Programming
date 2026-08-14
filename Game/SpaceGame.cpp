@@ -15,21 +15,21 @@ bool SpaceGame::Initialize()
 	m_scene->SetGame(this);
 	m_scene->Load("data/scene.json");
 
-	json::document_t document;
-	if (json::Load("data/scene.json", document))
-	{
-		std::string type;
-		json::Read(document, "type", type);
+	//json::document_t document;
+	//if (json::Load("data/scene.json", document))
+	//{
+	//	std::string type;
+	//	json::Read(document, "type", type);
 
-		auto actor = Factory::Instance().Create<Actor>(type);
-	    actor->Read(document);
+	//	auto actor = Factory::Instance().Create<Actor>(type);
+	//    actor->Read(document);
 
-	    std::cout << actor->GetName() << std::endl;
-	    std::cout << actor->GetTag() << std::endl;
-	    std::cout << actor->GetTransform().rotation << std::endl;
+	//    std::cout << actor->GetName() << std::endl;
+	//    std::cout << actor->GetTag() << std::endl;
+	//    std::cout << actor->GetTransform().rotation << std::endl;
 
-		Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
-	}
+	//	Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
+	//}
 
 	m_titleFont = new Font();
 	m_titleFont->Load("fonts/airstrike.ttf", 64);
@@ -158,16 +158,19 @@ void SpaceGame::SpawnEnemy()
 
 	if (model == 0) {
 		auto actor = Factory::Instance().Create<Actor>("Enemy01");
+		actor->SetPosition(Vector2(RandomFloat(Engine::Get().GetRenderer().GetWidth()), RandomFloat(Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
 	else if (model == 1)
 	{
 		auto actor = Factory::Instance().Create<Actor>("Enemy02");
+		actor->SetPosition(Vector2(RandomFloat(Engine::Get().GetRenderer().GetWidth()), RandomFloat(Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
 	else
 	{
 		auto actor = Factory::Instance().Create<Actor>("Enemy03");
+		actor->SetPosition(Vector2(RandomFloat(Engine::Get().GetRenderer().GetWidth()), RandomFloat(Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
 }

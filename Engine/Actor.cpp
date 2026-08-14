@@ -47,7 +47,7 @@ namespace nu
 		}
 		if (m_texture)
 		{
-			return (m_texture->GetSize().Length() * 0.5f) * 0.5;
+			return (m_texture->GetSize().Length() * 0.5f) * 0.5f;
 		}
 		return 0.0f;
 	}
@@ -69,10 +69,9 @@ namespace nu
 			m_texture = Resources().Get<Texture>(textureName, Engine::Get().GetRenderer());
 		}
 
-		JSON_READ_NAME(value, "tag", m_tag, m_tag);
+		JSON_READ_NAME(value, "tag", m_tag);
 		JSON_READ_NAME(value, "lifespan", m_lifespan);
 		JSON_READ_NAME(value, "velocity", m_velocity);
-		JSON_READ_NAME(value, "dampening", m_damping);
-
+		JSON_READ_NAME(value, "damping", m_damping);
 	}
 }

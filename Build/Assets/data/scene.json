@@ -2,24 +2,24 @@
 	"actors": [
 		{
 			"prototype": true,
-			"name": "Player",
+			"name": "PlayerPrototype",
 			"type": "Player",
 			"tag": "Player",
 			"active": true,
 			"speed": 2000,
-			"damping": 3,
+			"damping": 30,
 			"texture": "textures/player_Ship.png",
 			"transform": {
 				"position": [ 640, 512 ],
-				"rotation": 45,
+				"rotation": 90,
 				"scale": 1
 			}
 		},
 		{
 			"prototype": true,
 			"name": "Enemy01",
-			"type": "Enemy01",
-			"tag": "Enemy01",
+			"type": "Enemy",
+			"tag": "Enemy",
 			"active": true,
 			"speed": 2000,
 			"damping": 3,
@@ -48,8 +48,8 @@
 		{
 			"prototype": true,
 			"name": "Enemy02",
-			"type": "Enemy02",
-			"tag": "Enemy02",
+			"type": "Enemy",
+			"tag": "Enemy",
 			"active": true,
 			"speed": 2000,
 			"damping": 3,
@@ -63,8 +63,8 @@
 		{
 			"prototype": true,
 			"name": "Enemy03",
-			"type": "Enemy03",
-			"tag": "Enemy03",
+			"type": "Enemy",
+			"tag": "Enemy",
 			"active": true,
 			"speed": 2000,
 			"damping": 3,

@@ -11,7 +11,7 @@ namespace nu
 	class Renderer
 	{
 	public:
-		bool Initialize(const char* name, int width, int height);
+		bool Initialize(const char* name, float width, float height);
 		void Shutdown();
 
 		void Clear() const;
@@ -28,8 +28,8 @@ namespace nu
 		void DrawModel(const class Model& model, const struct Transform& transform) const;
 		void DrawTexture(const class Texture& texture, float x, float y, float angle = 0.0f, float scale = 1.0f, bool flipH = false) const;
 
-		int GetWidth() const { return m_width; }
-		int GetHeight() const { return m_height; }
+		float GetWidth() const { return m_width; }
+		float GetHeight() const { return m_height; }
 
 		friend class Text;
 		friend class Texture;
@@ -38,8 +38,8 @@ namespace nu
 		SDL_Window* m_window = nullptr;
 		SDL_Renderer* m_renderer = nullptr;
 
-		int m_width = 0;
-		int m_height = 0;
+		float m_width = 0.0f;
+		float m_height = 0.0f;
 	};
 }
 
