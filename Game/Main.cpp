@@ -20,66 +20,9 @@ int main()
     nu::SetWorkingDirectory("Assets");
 
     Factory::Instance().Register<Actor>("Actor");
-    Factory::Instance().Register<Object>("Object");
     Factory::Instance().Register<Player>("Player");
     Factory::Instance().Register<Enemy>("Enemy");
-    Factory::Instance().Register<Bullet>("Bullet");
-    
-    //auto actor = Factory::Instance().Create<Actor>("Actor");
-    //std::cout << actor->IsActive() << std::endl;
-    //
-    //auto object = Factory::Instance().Create<Object>("Object");
-    //std::cout << object->IsActive() << std::endl;
-    //
-    //auto player = Factory::Instance().Create<Player>("Player");
-    //std::cout << player->IsActive() << std::endl;
-    //
-    //json::document_t document;
-    //if (json::Load("data/scene.json", document))
-    //{
-    //    player->Read(document);
-    //    std::cout << player->GetName() << std::endl;
-    //    std::cout << player->GetTag() << std::endl;
-    //
-    //    std::cout << player->GetTransform().rotation << std::endl;
-    //    std::cout << player->GetSpeed() << std::endl;
-    //}
-    //
-    //
-    // load the json data from a file
-    std::string buffer;
-    if (ReadTextFile("data/data.json", buffer))
-    {
-        // show the contents of the json file (debug)
-        std::cout << buffer << std::endl;
-    
-        // create json document from the json file contents
-        rapidjson::Document document;
-        if (json::Load("data/data.json", document))
-        {
-            // read the age data (int) from the json
-            std::string name;
-            int age;
-            float speed;
-            bool isAwake;
-            nu::Vector2 position;
-            nu::Vector3 color;
-    
-            // read the json data
-            nu::json::Read(document, "name", name);
-            nu::json::Read(document, "age", age);
-            nu::json::Read(document, "speed", speed);
-            nu::json::Read(document, "isAwake", isAwake);
-            nu::json::Read(document, "position", position);
-            nu::json::Read(document, "color", color);
-    
-            // show the data
-            std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
-            std::cout << position.x << " " << position.y << std::endl;
-            std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
-    
-        }
-    }    
+    Factory::Instance().Register<Bullet>("Bullet");   
     
     // INITIALIZATION
     Engine::Get().Initialize();

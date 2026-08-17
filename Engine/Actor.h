@@ -5,6 +5,7 @@
 #include <memory>
 #include "Resource.h"
 #include "Object.h"
+#include "Component.h"
 
 namespace nu
 {
@@ -32,9 +33,7 @@ namespace nu
 			m_transform{ actorDesc.transform },
 			m_velocity{ actorDesc.velocity },
 			m_damping{ actorDesc.damping },
-			m_lifespan{ actorDesc.lifespan },
-			m_model{ actorDesc.model },
-			m_texture {actorDesc.texture}
+			m_lifespan{ actorDesc.lifespan }
 		{ }
 
 		CLASS_PROTOTYPE(Actor)
@@ -77,8 +76,8 @@ namespace nu
 		float m_lifespan{ 0 };
 		bool m_destroyed{ false };
 
-		res_t<Model> m_model;
-		res_t<Texture> m_texture;
+		std::vector<Component*> m_components;
+
 		Scene* m_scene{ nullptr };
 	};
 }

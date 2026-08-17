@@ -7,8 +7,11 @@
 #include "SpaceGame.h"
 #include "Model.h"
 #include "Resource.h"
+#include "Factory.h"
 
 #include <iostream>
+
+FACTORY_REGISTER(Player)
 
 void Player::Update(float dt)
 {
