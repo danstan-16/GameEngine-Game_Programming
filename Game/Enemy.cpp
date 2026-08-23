@@ -25,22 +25,12 @@ void Enemy::Update(float dt)
 		SetVelocity(forward * m_speed * dt);
 	}
 
-	// particle system
-	nu::Particle particle;
-	particle.position = m_transform.position;
-	particle.color = { 1.0f, 1.0f, 1.0f };
-	particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
-	particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
-
-	nu::Engine::Get().GetPS().AddParticle(particle);
-
 	Actor::Update(dt);
 
 }
 
 void Enemy::OnCollision(Actor* other)
 {
-	//std::cout << other->GetName() << std::endl;
 
 	if (other->GetTag() == "playerBullet")
 	{
@@ -49,22 +39,18 @@ void Enemy::OnCollision(Actor* other)
 		other->SetDestroyed();
 
 		((SpaceGame*)m_scene->GetGame())->AddPoints(100);
-
-		//nu::Engine::Get().GetAudio().PlaySound("explosion");
-		// create particle explosions	
-		for (int i = 0; i < 100; i++)
-		{
-			nu::Particle particle;
-			particle.position = m_transform.position;
-			particle.color = { 1.0f, 1.0f, 1.0f };
-			particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
-			particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
-
-			nu::Engine::Get().GetPS().AddParticle(particle);
-		}
 	}
 
-	
+	for (int i = 0; i < 100; i++)
+	{
+		nu::Particle particle;
+		particle.position = m_transform.position;
+		particle.color = { 1.0f, 1.0f, 1.0f };
+		particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
+		particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
+
+		nu::Engine::Get().GetPS().AddParticle(particle);
+	}
 }
 
 void Enemy::Read(const nu::json::value_t & value)

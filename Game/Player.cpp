@@ -39,10 +39,10 @@ void Player::Update(float dt)
 		offset = offset.Rotate(m_transform.rotation * nu::DegToRad);
 		particle.position = m_transform.position + offset;
 
-		nu::Color colors[3] = { {255.0f, 255.0f, 255.0f}, {255.0f, 0.0f, 0.0f}, {255.0f, 255.0f, 0.0f} };
-		particle.color = colors[nu::RandomInt(3)];
+		//nu::Color colors[3] = { {255.0f, 255.0f, 255.0f}, {255.0f, 0.0f, 0.0f}, {255.0f, 255.0f, 0.0f} };
+		//particle.color = colors[nu::RandomInt(3)];
 		particle.lifespan = nu::RandomFloat(0.5f, 1.5f);
-		particle.velocity = nu::Vector2{ nu::RandomFloat(-30.0f, -100.0f), 0.0f }.Rotate((m_transform.rotation + nu::RandomInt(-10, 10)) * nu::DegToRad);
+		particle.velocity = { nu::RandomFloat(-200.0f, 200.0f), nu::RandomFloat(-200.0f, 200.0f) };
 
 		nu::Engine::Get().GetPS().AddParticle(particle);
 	}
@@ -53,6 +53,15 @@ void Player::Update(float dt)
 	if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE))
 	{
 		nu::Engine::Get().GetAudio().PlaySound("pewpew");
+
+		auto bullet = nu::Factory::Instance().Create<Bullet>("BulletPrototype");
+		bullet->SetTransform(m_transform);
+		bullet->SetScale(2.0f);
+		bullet->SetTag("PlayerBullet");
+
+		m_scene->AddActor(std::move(bullet));
+
+		/*
 		BulletDesc desc;
 		desc.name = "Bullet";
 		desc.tag = "playerBullet";
@@ -74,7 +83,7 @@ void Player::Update(float dt)
 		desc.transform.rotation -= 40.0f;
 		bullet = new Bullet{ desc };
 		m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
-		
+		*/
 		
 	}
 

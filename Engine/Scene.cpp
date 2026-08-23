@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Actor.h"
 #include "Factory.h"
+#include "Components/ColliderComponent.h"
 
 namespace nu
 {
@@ -45,16 +46,18 @@ namespace nu
 
 	void Scene::UpdateCollisions()
 	{
-
-
 		for (auto& actorA : m_actors)
 		{
 			for (auto& actorB : m_actors)
 			{
 				if (actorA == actorB || actorA->m_destroyed || actorB->m_destroyed) continue;
 
-				float distance = (actorA->m_transform.position - actorB->m_transform.position).Length();
-				if (distance <= actorA->GetRadius() + actorB->GetRadius())
+				auto colliderA = actorA->GetComponent<ColliderComponent>();
+				auto colliderB = actorB->GetComponent<ColliderComponent>();
+
+				if (!colliderA || !colliderB) continue;
+
+				if (colliderA->CheckCollision(*colliderB))
 				{
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());
@@ -62,8 +65,6 @@ namespace nu
 
 			}
 		}
-
-
 	}
 
 	void Scene::RemoveAllActors()
@@ -85,17 +86,11 @@ namespace nu
 					JSON_READ_NAME(actorValue, "type", typeName);
 					std::cout << "Loading actor type: " << typeName << std::endl;
 
-						// create actor of type
-						auto actor = Factory::Instance().Create<Actor>(typeName);
-					// could not create actor (actor is null)
-					if (!actor)
-					{
-						std::cout << "Could not create actor type: " << typeName << std::endl;
-						continue;
-					}
+					// create actor of type
+					auto actor = Factory::Instance().Create<Actor>(typeName);
 
-						// read actor json 
-						actor->Read(actorValue);
+					// read actor json 
+					actor->Read(actorValue);
 
 					// check if prototype
 					bool prototype = false;

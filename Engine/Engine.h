@@ -18,6 +18,8 @@
 
 #include "Factory.h"
 
+#include "Physics/Physics.h"
+
 //systems
 #include "Random.h"
 #include "Input.h"
@@ -61,6 +63,7 @@ namespace nu
 		}
 
 		ParticleSystem& GetPS() { return m_particleSystem; }
+		Physics& GetPhysics() { return m_physics; }
 
 
 	private:
@@ -71,6 +74,7 @@ namespace nu
 		Renderer m_renderer;
 		Time m_time;
 		Audio m_audio;
+		Physics m_physics;
 
 	};
 }

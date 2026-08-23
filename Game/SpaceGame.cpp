@@ -15,22 +15,6 @@ bool SpaceGame::Initialize()
 	m_scene->SetGame(this);
 	m_scene->Load("data/scene.json");
 
-	//json::document_t document;
-	//if (json::Load("data/scene.json", document))
-	//{
-	//	std::string type;
-	//	json::Read(document, "type", type);
-
-	//	auto actor = Factory::Instance().Create<Actor>(type);
-	//    actor->Read(document);
-
-	//    std::cout << actor->GetName() << std::endl;
-	//    std::cout << actor->GetTag() << std::endl;
-	//    std::cout << actor->GetTransform().rotation << std::endl;
-
-	//	Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
-	//}
-
 	m_titleFont = new Font();
 	m_titleFont->Load("fonts/airstrike.ttf", 64);
 
@@ -114,6 +98,7 @@ void SpaceGame::Update(float dt)
 
 void SpaceGame::Draw(nu::Renderer& renderer)
 {
+	// draw background here
 	switch (m_gameState)
 	{
 	case SpaceGame::Title:
