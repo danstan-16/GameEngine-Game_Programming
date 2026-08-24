@@ -1,36 +1,36 @@
 #pragma once
 
-#include "Renderer.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Transform.h"
-#include "MathUtils.h"
-#include "File.h"
+#include "Renderer/Renderer.h"
+#include "Math/Vector2.h"
+#include "Math/Vector3.h"
+#include "Math/Transform.h"
+#include "Math/MathUtils.h"
+#include "Core/File.h"
 
-#include "Text.h"
-#include "Texture.h"
+#include "Renderer/Text.h"
+#include "Renderer/Texture.h"
 
-#include "ResourceManager.h"
-#include "Resource.h"
+#include "Resources/ResourceManager.h"
+#include "Resources/Resource.h"
 
-#include "Json.h"
-#include "StringUtils.h"
+#include "Serialization/Json.h"
+#include "Core/StringUtils.h"
 
-#include "Factory.h"
+#include "Core/Factory.h"
 
 #include "Physics/Physics.h"
 
 //systems
-#include "Random.h"
-#include "Input.h"
-#include "GameTime.h"
-#include "Audio.h"
-#include "ParticleSystem.h"
+#include "Core/Random.h"
+#include "Input/Input.h"
+#include "Core/GameTime.h"
+#include "Audio/Audio.h"
+#include "Renderer/ParticleSystem.h"
 
 // framework
-#include "Actor.h"
-#include "Scene.h"
-#include "Game.h"
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+#include "Framework/Game.h"
 
 namespace nu
 {

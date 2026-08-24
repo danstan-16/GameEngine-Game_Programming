@@ -1,6 +1,6 @@
 #pragma once
-#include "Model.h"
-#include "Texture.h"
+#include "Renderer/Model.h"
+#include "Renderer/Texture.h"
 #include <memory>
 
 namespace Assets

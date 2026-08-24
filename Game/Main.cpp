@@ -19,10 +19,10 @@ int main()
 {
     nu::SetWorkingDirectory("Assets");
 
-    Factory::Instance().Register<Actor>("Actor");
-    Factory::Instance().Register<Player>("Player");
-    Factory::Instance().Register<Enemy>("Enemy");
-    Factory::Instance().Register<Bullet>("Bullet");   
+    //Factory::Instance().Register<Actor>("Actor");
+    //Factory::Instance().Register<Player>("Player");
+    //Factory::Instance().Register<Enemy>("Enemy");
+    //Factory::Instance().Register<Bullet>("Bullet");   
     
     // INITIALIZATION
     Engine::Get().Initialize();

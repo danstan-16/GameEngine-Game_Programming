@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "Player.h"
-#include "Renderer.h"
+#include "Renderer/Renderer.h"
 #include "Engine.h"
 #include "Assets.h"
 #include "Bullet.h"
 #include "SpaceGame.h"
-#include "Model.h"
-#include "Resource.h"
-#include "Factory.h"
+#include "Renderer/Model.h"
+#include "Resources/Resource.h"
+#include "Core/Factory.h"
 
 #include <iostream>
 

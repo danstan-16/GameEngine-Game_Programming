@@ -1,10 +1,8 @@
 #include "pch.h"
 #include "ParticleSystem.h"
 #include "Renderer.h"
-#include "ResourceManager.h"
+#include "Resources/ResourceManager.h"
 #include "Engine.h"
-
-#include <memory>
 
 namespace nu
 {

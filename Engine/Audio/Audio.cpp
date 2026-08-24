@@ -2,9 +2,6 @@
 #include "Audio.h"
 #include <fmod_errors.h>
 
-#include <iostream>
-#include <string>
-
 namespace nu
 {
 	bool Audio::Initialize()
