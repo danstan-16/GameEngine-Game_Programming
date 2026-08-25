@@ -9,8 +9,6 @@
 #include "Resources/Resource.h"
 #include "Core/Factory.h"
 
-#include <iostream>
-
 FACTORY_REGISTER(Player)
 
 void Player::Update(float dt)

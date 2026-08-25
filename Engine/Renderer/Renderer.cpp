@@ -5,13 +5,14 @@
 #include "Math/MathUtils.h"
 #include "Texture.h"
 #include "Input/Input.h"
+#include "Math/Rect.h"
 
 namespace nu
 {
     bool nu::Renderer::Initialize(const char* name, float width, float height)
     {
-        m_width = width;
-        m_height = height;
+        m_width = (int)width;
+        m_height = (int)height;
         SDL_Init(SDL_INIT_VIDEO);
 
         if (!TTF_Init()) {
@@ -19,7 +20,7 @@ namespace nu
             return false;
         }
 
-        m_window = SDL_CreateWindow(name, width, height, 0);
+        m_window = SDL_CreateWindow(name, (int)width, (int)height, 0);
         if (m_window == nullptr) {
             std::cerr << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
             SDL_Quit();
@@ -129,9 +130,23 @@ namespace nu
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 
-    void Renderer::DrawTexture(const Texture& texture, Rect& source, float x, float y, float angle, float scale, bool flipH) const
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH) const
     {
+        SDL_FRect sourceRect;
+        sourceRect.x = source.x;
+        sourceRect.y = source.y;
+        sourceRect.w = source.w;
+        sourceRect.h = source.h;
 
+        SDL_FRect destRect;
+        destRect.w = source.w * scale;
+        destRect.h = source.h * scale;
+
+        destRect.x = x - (destRect.w * 0.5f);
+        destRect.y = y - (destRect.h * 0.5f);
+
+        //https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 
 }

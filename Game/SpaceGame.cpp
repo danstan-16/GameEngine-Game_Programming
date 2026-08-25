@@ -103,7 +103,7 @@ void SpaceGame::Draw(nu::Renderer& renderer)
 	{
 	case SpaceGame::Title:
 		// draw title
-		m_titleText->Draw(renderer, renderer.GetWidth() - 750, renderer.GetHeight() - 800);
+		m_titleText->Draw(renderer, (float)renderer.GetWidth() - 750.0f, (float)renderer.GetHeight() - 800.0f);
 		break;
 
 	case SpaceGame::StartGame:
@@ -116,13 +116,13 @@ void SpaceGame::Draw(nu::Renderer& renderer)
 		m_scoreText->Draw(renderer, 30, 30);
 
 		m_livesText->Create(renderer, "Lives: " + std::to_string(m_lives), { 1.0f, 1.0f, 1.0f });
-		m_livesText->Draw(renderer, renderer.GetWidth() - 200, 30);
+		m_livesText->Draw(renderer, (float)renderer.GetWidth() - 200.0f, 30.0f);
 		break;
 
 	case SpaceGame::GameOver:
 		// draw gameover
 		m_gameOverText->Create(renderer, "GAME OVER", { 1.0f, 0.0f, 0.0f });
-		m_gameOverText->Draw(renderer, renderer.GetWidth() - 850, renderer.GetHeight() - 900);
+		m_gameOverText->Draw(renderer, (float)renderer.GetWidth() - 850.0f, (float)renderer.GetHeight() - 900.0f);
 		break;
 	default:
 		break;
@@ -143,19 +143,19 @@ void SpaceGame::SpawnEnemy()
 
 	if (model == 0) {
 		auto actor = Factory::Instance().Create<Actor>("Enemy01");
-		actor->SetPosition(Vector2(RandomFloat(Engine::Get().GetRenderer().GetWidth()), RandomFloat(Engine::Get().GetRenderer().GetHeight())));
+		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
 	else if (model == 1)
 	{
 		auto actor = Factory::Instance().Create<Actor>("Enemy02");
-		actor->SetPosition(Vector2(RandomFloat(Engine::Get().GetRenderer().GetWidth()), RandomFloat(Engine::Get().GetRenderer().GetHeight())));
+		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
 	else
 	{
 		auto actor = Factory::Instance().Create<Actor>("Enemy03");
-		actor->SetPosition(Vector2(RandomFloat(Engine::Get().GetRenderer().GetWidth()), RandomFloat(Engine::Get().GetRenderer().GetHeight())));
+		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
 }

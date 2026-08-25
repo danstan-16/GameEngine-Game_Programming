@@ -1,7 +1,6 @@
 #include "Engine.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "fmod.hpp"
 #include "Assets.h"
 #include "SpaceGame.h"
 #include "Bullet.h"
@@ -17,12 +16,7 @@ using namespace nu;
 
 int main()
 {
-    nu::SetWorkingDirectory("Assets");
-
-    //Factory::Instance().Register<Actor>("Actor");
-    //Factory::Instance().Register<Player>("Player");
-    //Factory::Instance().Register<Enemy>("Enemy");
-    //Factory::Instance().Register<Bullet>("Bullet");   
+    nu::SetWorkingDirectory("Assets"); 
     
     // INITIALIZATION
     Engine::Get().Initialize();

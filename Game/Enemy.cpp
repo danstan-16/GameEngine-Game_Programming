@@ -6,8 +6,6 @@
 #include "SpaceGame.h"
 #include "Core/Factory.h"
 
-#include <iostream>
-
 FACTORY_REGISTER(Enemy)
 
 void Enemy::Update(float dt)

@@ -41,14 +41,14 @@ namespace nu
         }
 
         Vector2 textureSize = m_texture->GetSize();
-        m_cellSize = textureSize / Vector2{ (float)m_numColumns, (float)m_numRows };
+        m_cellSize = textureSize / Vector2{ static_cast<float>(m_numColumns), static_cast<float>(m_numRows) };
 
         return true;
     }
 
     Rect TextureFrames::GetFrameRect(unsigned int frame)
     {
-        if (frame < 0 || frame >= m_totalFrames)
+        if (frame >= m_totalFrames)
         {
             std::cerr << "Texture Frames frame " << frame << " is out of bounds\n";
             frame = 0;

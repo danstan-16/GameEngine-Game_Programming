@@ -21,6 +21,6 @@ namespace nu
 		void SetScene(Scene* scene) { m_scene = scene; }
 
 	protected:
-		Scene* m_scene;
+		Scene* m_scene = nullptr;
 	};
 }
