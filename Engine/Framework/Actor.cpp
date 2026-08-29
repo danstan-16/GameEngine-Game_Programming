@@ -97,6 +97,7 @@ namespace nu
 
 				if (component)
 				{
+					std::cout << "Component exists: " << typeName << std::endl;
 					component->Read(componentValue);
 					AddComponent(std::move(component));
 				}
@@ -108,5 +109,13 @@ namespace nu
 	{
 		component->SetOwner(this);
 		m_components.push_back(std::move(component));
+	}
+
+	void Actor::Start()
+	{
+		for (auto& component : m_components)
+		{
+			component->Start();
+		}
 	}
 }

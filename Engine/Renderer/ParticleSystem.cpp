@@ -29,7 +29,7 @@ namespace nu
 			if (!particle.active) continue;
 
 			particle.lifespan -= dt;
-			if (particle.lifespan > 0) particle.active = true;
+			particle.active = particle.lifespan > 0;
 			particle.position += particle.velocity * dt;
 		}
 	}
@@ -42,7 +42,10 @@ namespace nu
 			if (particle.active)
 			{
 				renderer.SetColor(particle.color.r, particle.color.g, particle.color.b);
-				//renderer.DrawTexture(*m_texture, particle.position.x, particle.position.y, m_transform.rotation, 0.25f);
+				if (particle.texture)
+				{
+					renderer.DrawTexture(*particle.texture, particle.position.x, particle.position.y, m_transform.rotation, 0.25f);
+				}
 			}
 		}
 	}

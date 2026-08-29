@@ -20,7 +20,7 @@ void Enemy::Update(float dt)
 
 		nu::Vector2 forward{ 1, 0 };
 		forward = forward.Rotate(m_transform.rotation * nu::DegToRad);
-		SetVelocity(forward * m_speed * dt);
+		SetVelocity(forward * m_speed);
 	}
 
 	Actor::Update(dt);
@@ -30,7 +30,7 @@ void Enemy::Update(float dt)
 void Enemy::OnCollision(Actor* other)
 {
 
-	if (other->GetTag() == "playerBullet")
+	if (other->GetTag() == "PlayerBullet")
 	{
 		nu::Engine::Get().GetAudio().PlaySound("explosion");
 		SetDestroyed();

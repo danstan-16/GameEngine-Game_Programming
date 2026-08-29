@@ -98,7 +98,8 @@ void SpaceGame::Update(float dt)
 
 void SpaceGame::Draw(nu::Renderer& renderer)
 {
-	// draw background here
+	renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/space_background.jpg", Engine::Get().GetRenderer()), Engine::Get().GetRenderer().GetWidth() * 0.5f, Engine::Get().GetRenderer().GetHeight() * 0.5f, 0.0f, 3.0f);
+
 	switch (m_gameState)
 	{
 	case SpaceGame::Title:

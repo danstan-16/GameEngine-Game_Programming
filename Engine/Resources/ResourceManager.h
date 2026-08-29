@@ -13,11 +13,11 @@ namespace nu
 		void RemoveAll() { m_resources.clear(); }
 
 		template<typename T, typename ... Args>
-		requires std::derived_from<T, Resource>
-		res_t<T> Get(const std::string& name, Args && ... args);
+			requires std::derived_from<T, Resource>
+		res_t<T> Get(const std::string& name, Args&& ... args);
 
 		template<typename T, typename ... Args>
-		requires std::derived_from<T, Resource>
+			requires std::derived_from<T, Resource>
 		res_t<T> GetWithID(const std::string& id, const std::string& name, Args&& ... args);
 
 	private:
@@ -30,7 +30,36 @@ namespace nu
 		requires std::derived_from<T, Resource>
 	inline res_t<T> ResourceManager::Get(const std::string& name, Args && ... args)
 	{
-		return GetWithID<T>(name, name, std::forward<Args>(args)...);
+		auto iter = m_resources.find(name);
+		// check if exists
+		if (iter != m_resources.end())
+		{
+			// get value in iterator
+			auto base = iter->second;
+			// cast to data type T
+			auto resource = std::dynamic_pointer_cast<T>(base);
+			// check if cast waws successful
+			if (resource == nullptr)
+			{
+				std::cerr << "Resource type mismatch: " << name << std::endl;
+				return res_t<T>();
+			}
+
+			// return resource
+			return resource;
+		}
+
+		std::cout << "load: " << name << std::endl;
+
+		// resource doesn't exist, create and load
+		res_t<T> resource = std::make_shared<T>();
+		if (!resource->Load(name, std::forward<Args>(args)...))
+		{
+			std::cerr << "Could not load resource: " << name << std::endl;
+			return res_t<T>();
+		}
+		m_resources[name] = resource;
+		return resource;
 	}
 
 	template<typename T, typename ...Args>

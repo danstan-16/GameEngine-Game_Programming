@@ -28,7 +28,6 @@ namespace nu
 	public:
 		Actor() = default;
 		Actor(const ActorDesc& actorDesc) :
-			m_name{ actorDesc.name },
 			m_tag{ actorDesc.tag },
 			m_transform{ actorDesc.transform },
 			m_velocity{ actorDesc.velocity },
@@ -70,6 +69,7 @@ namespace nu
 		virtual void Read(const nu::json::value_t& value) override;
 
 		void AddComponent(std::unique_ptr<Component> component);
+		virtual void Start();
 
 		template<std::derived_from<Component> T>
 		T* GetComponent();
@@ -77,7 +77,6 @@ namespace nu
 		friend Scene;
 
 	protected:
-		std::string m_name;
 		std::string m_tag;
 
 		Transform m_transform;

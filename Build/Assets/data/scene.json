@@ -26,7 +26,7 @@
 			"type": "Player",
 			"tag": "Player",
 			"active": true,
-			"speed": 2000,
+			"speed": 20000.0,
 			"damping": 30,
 			"transform": {
 				"position": [ 640, 512 ],
@@ -50,7 +50,7 @@
 			"type": "Enemy",
 			"tag": "Enemy",
 			"active": true,
-			"speed": 2000,
+			"speed": 200.0,
 			"damping": 3,
 			"texture": "textures/enemy_Ship01.png",
 			"transform": {
@@ -71,11 +71,12 @@
 		},
 		{
 			"prototype": true,
-			"name": "Bullet",
+			"name": "BulletPrototype",
 			"type": "Bullet",
 			"tag": "Bullet",
 			"active": true,
 			"speed": 2000,
+			"lifespan": 1.0,
 			"damping": 3,
 			"texture": "textures/bullet.png",
 			"transform": {
@@ -100,7 +101,7 @@
 			"type": "Enemy",
 			"tag": "Enemy",
 			"active": true,
-			"speed": 2000,
+			"speed": 200.0,
 			"damping": 3,
 			"texture": "textures/enemy_Ship02.png",
 			"transform": {
@@ -125,7 +126,7 @@
 			"type": "Enemy",
 			"tag": "Enemy",
 			"active": true,
-			"speed": 2000,
+			"speed": 200.0,
 			"damping": 3,
 			"texture": "textures/enemy_Ship03.png",
 			"transform": {
