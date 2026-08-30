@@ -10,7 +10,7 @@ bool SpriteGame::Initialize()
 
 	Game::Initialize();
 
-	m_scene = new nu::Scene();
+	m_scene = std::make_unique<nu::Scene>();
 	m_scene->SetGame(this);
 	m_scene->Load("data/scene.json");
 

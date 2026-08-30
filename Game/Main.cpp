@@ -60,7 +60,7 @@ int main()
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
         Engine::Get().GetRenderer().Present();
     }
-
+    game.reset();
     Engine::Get().Shutdown();
 
     return 0;
