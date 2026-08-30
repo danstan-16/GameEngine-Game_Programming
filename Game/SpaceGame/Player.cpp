@@ -27,7 +27,6 @@ void Player::Update(float dt)
 	nu::Vector2 forward{ 1, 0 }; // -->
 	nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * thrust;
 	AddVelocity(velocity * dt);
-	//SetVelocity(forward);
 
 	// particle system
 	if (thrust)

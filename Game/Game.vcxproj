@@ -167,30 +167,30 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Assets.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Main.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)ThirdParty\fmod\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SpaceGame.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{da265712-6476-4796-8916-2097bab06369}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assets.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="SpaceGame.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\Build\Assets\animations\bat_idle.json" />
     <None Include="..\Build\Assets\data\scene.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SpaceGame\Assets.cpp" />
+    <ClCompile Include="SpaceGame\Bullet.cpp" />
+    <ClCompile Include="SpaceGame\Enemy.cpp" />
+    <ClCompile Include="SpaceGame\Player.cpp" />
+    <ClCompile Include="SpaceGame\SpaceGame.cpp" />
+    <ClCompile Include="SpriteGame\SpriteGame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SpaceGame\Assets.h" />
+    <ClInclude Include="SpaceGame\Bullet.h" />
+    <ClInclude Include="SpaceGame\Enemy.h" />
+    <ClInclude Include="SpaceGame\Player.h" />
+    <ClInclude Include="SpaceGame\SpaceGame.h" />
+    <ClInclude Include="SpriteGame\SpriteGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

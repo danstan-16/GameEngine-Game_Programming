@@ -9,6 +9,8 @@ class Scene;
 
 bool SpaceGame::Initialize()
 {
+	SetWorkingDirectory("spacegame");
+
 	Game::Initialize();
 
 	m_scene = new nu::Scene();

@@ -1,9 +1,10 @@
 #include "Engine.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Assets.h"
-#include "SpaceGame.h"
-#include "Bullet.h"
+#include "SpaceGame/Player.h"
+#include "SpaceGame/Enemy.h"
+#include "SpaceGame/Assets.h"
+#include "SpaceGame/SpaceGame.h"
+#include "SpaceGame/Bullet.h"
+#include "SpriteGame/SpriteGame.h"
 
 #include <iostream>
 #include <vector>
@@ -21,8 +22,8 @@ int main()
     // INITIALIZATION
     Engine::Get().Initialize();
 
-    SpaceGame game;
-    game.Initialize();     
+    std::unique_ptr<SpriteGame> game = std::make_unique<SpriteGame>();
+    game->Initialize();     
 
     std::vector<Vector2> points;
     
@@ -49,12 +50,12 @@ int main()
 
         float dt = Engine::Get().GetTime().GetDeltaTime();
 
-        game.Update(dt);
+        game->Update(dt);
 
         Engine::Get().GetRenderer().SetColor(0.0f, 0.0f, 0.0f);
         Engine::Get().GetRenderer().Clear();
 
-        game.Draw(Engine::Get().GetRenderer());
+        game->Draw(Engine::Get().GetRenderer());
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
         Engine::Get().GetRenderer().Present();
