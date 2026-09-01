@@ -34,7 +34,7 @@ namespace nu
 
 		if (dir != 0.0f)
 		{
-			velocity.x = dir * 1000;
+			velocity.x = dir * 100;
 			m_rendererComponent->Play("idle");
 			// if moving Play("run")
 			

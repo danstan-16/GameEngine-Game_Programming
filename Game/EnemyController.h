@@ -18,6 +18,8 @@ namespace nu
     protected:
         class PhysicsComponent* m_physicsComponent{ nullptr };
         class SpriteAnimatorRendererComponent* m_rendererComponent{ nullptr };
+
+        float m_speed = 0.0f;
     };
 }
 

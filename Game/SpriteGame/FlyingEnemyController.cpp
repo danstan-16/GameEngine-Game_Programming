@@ -62,5 +62,7 @@ namespace nu
 	void FlyingEnemyController::Read(const json::value_t& value)
 	{
 		Actor::Read(value);
+
+		JSON_READ_NAME(value, "speed", m_speed);
 	}
 }

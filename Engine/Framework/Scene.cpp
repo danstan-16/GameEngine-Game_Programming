@@ -31,9 +31,6 @@ namespace nu
 			m_actors.push_back(std::move(actor));
 		}
 		m_pendingActors.clear();
-
-		//m_actors.insert(m_actors.end(), m_pendingActors.begin(), m_pendingActors.end());
-		//m_pendingActors.clear();
 	}
 
 	void Scene::Draw(const class Renderer& renderer)

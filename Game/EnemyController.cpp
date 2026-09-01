@@ -20,6 +20,7 @@ namespace nu
 
 	void EnemyController::Update(float dt)
 	{
+		if (!m_physicsComponent) Start();
 		Vector2 velocity = m_physicsComponent->GetVelocity();
 
 		float dir = 0.0f;
@@ -59,5 +60,7 @@ namespace nu
 	void EnemyController::Read(const json::value_t& value)
 	{
 		Actor::Read(value);
+
+		JSON_READ_NAME(value, "speed", m_speed);
 	}
 }

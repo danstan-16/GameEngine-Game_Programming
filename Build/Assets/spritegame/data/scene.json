@@ -66,7 +66,7 @@
 					"shape": "capsule",
 					"size": [ 36, 48 ],
 					"constrain_angle": true,
-					"gravity_scale": 1
+					"gravity_scale": -1
 				}
 			]
 		},
@@ -76,7 +76,7 @@
 			"name": "EnemyPrototype",
 			"tag": "Enemy",
 			"active": true,
-			"speed": 2000.0,
+			"speed": 0.0,
 			"damping": 30,
 			"transform": {
 				"position": [ 640, 512 ],
@@ -113,7 +113,7 @@
 			"type": "FlyingEnemyController",
 			"tag": "FlyingEnemy",
 			"active": true,
-			"speed": 2000.0,
+			"speed": 200.0,
 			"damping": 30,
 			"transform": {
 				"position": [ 640, 512 ],
