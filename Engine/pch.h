@@ -26,5 +26,6 @@
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <fmod.hpp>
+#include <box2d/box2d.h>
 
 #endif //PCH_H

@@ -74,8 +74,9 @@ namespace nu
 
 	bool Scene::Load(const std::string& sceneName)
 	{
+
 		json::document_t document;
-		if (json::Load("data/scene.json", document))
+		if (json::Load(sceneName, document))
 		{
 			if (JSON_HAS_NAME(document, "actors"))
 			{

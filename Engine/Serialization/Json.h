@@ -1,6 +1,7 @@
 #pragma once
 #include <rapidjson/document.h>
 #include <string>
+#include <vector>
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
 
@@ -13,7 +14,7 @@
 #define JSON_HAS(value, data) value.HasMember(#data)
 #define JSON_HAS_NAME(value, name) value.HasMember(name)
 
-#define HSIB_GET(value, data) value[#data]
+#define JSON_GET(value, data) value[#data]
 #define JSON_GET_NAME(value, name) value[name]
 
 namespace nu::json
@@ -31,4 +32,5 @@ namespace nu::json
 	bool Read(const value_t& value, const std::string& name, std::string& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, struct Vector2& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, struct Vector3& data, bool required = false);
+	bool Read(const value_t& value, const std::string& name, struct std::vector<int>& data, bool required = false);
 }
