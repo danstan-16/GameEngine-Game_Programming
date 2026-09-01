@@ -23,6 +23,7 @@ namespace nu
 	void Physics::Update(float dt)
 	{
 		b2World_Step(m_worldId, 1.0f / 60.0f, 4);
+		ProcessCollisionEvents();
 	}
 
 	void Physics::ProcessCollisionEvents()
@@ -34,8 +35,8 @@ namespace nu
 			auto contactEvent = contactEvents.beginEvents + i;
 			if (!b2Shape_IsValid(contactEvent->shapeIdA) || !b2Shape_IsValid(contactEvent->shapeIdB)) continue;
 
-			b2BodyId bodyA = b2Shape_GetBody(contactEvent->shapeIdB);
-			b2BodyId bodyB = b2Shape_GetBody(contactEvent->shapeIdA);
+			b2BodyId bodyA = b2Shape_GetBody(contactEvent->shapeIdA);
+			b2BodyId bodyB = b2Shape_GetBody(contactEvent->shapeIdB);
 
 			Actor* actorA = (Actor*)b2Body_GetUserData(bodyA);
 			if (actorA == nullptr || actorA->GetDestroyed() || !actorA->IsActive()) continue;
@@ -51,10 +52,10 @@ namespace nu
 		for (int i = 0; i < sensorEvents.beginCount; i++)
 		{
 			auto sensorEvent = sensorEvents.beginEvents + i;
-			if (!b2Shape_IsValid(sensorEvent->sensorShapeId) || !b2Shape_IsValid(sensorEvent->sensorShapeId)) continue;
+			if (!b2Shape_IsValid(sensorEvent->sensorShapeId) || !b2Shape_IsValid(sensorEvent->visitorShapeId)) continue;
 
-			b2BodyId bodyA = b2Shape_GetBody(sensorEvent->visitorShapeId);
-			b2BodyId bodyB = b2Shape_GetBody(sensorEvent->sensorShapeId);
+			b2BodyId bodyA = b2Shape_GetBody(sensorEvent->sensorShapeId);
+			b2BodyId bodyB = b2Shape_GetBody(sensorEvent->visitorShapeId);
 
 			Actor* actorA = (Actor*)b2Body_GetUserData(bodyA);
 			if (actorA == nullptr || actorA->GetDestroyed() || !actorA->IsActive()) continue;

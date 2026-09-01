@@ -62,6 +62,8 @@ namespace nu
 
 	void TilemapRendererComponent::Draw(const Renderer& renderer)
 	{
+		if (!m_tilemap) Start();
+
 		// iterate through layers
 		for (auto layer : m_tilemap->GetLayers())
 		{

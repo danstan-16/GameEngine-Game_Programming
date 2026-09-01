@@ -1,5 +1,5 @@
 {
-    "activeFile": "TileMap.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
@@ -13,7 +13,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 714.25,
-                "y": 406.25
+                "y": 406.5
             }
         },
         "nature_tilemap.tsx": {
@@ -24,8 +24,8 @@
             "scale": 1.1113020833333331,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 509.3124619206076,
-                "y": 480.0674884004313
+                "x": 509.76238459014866,
+                "y": 480.5174110699724
             }
         },
         "tilemap.tsx": {
@@ -39,9 +39,6 @@
     "map.lastUsedExportFilter": "All Files (*)",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "TileMap.tmx",
-        "nature_tilemap.tsx",
-        "tilemap.json"
     ],
     "project": "tilemap_spaceGame.tiled-project",
     "property.type": "string",

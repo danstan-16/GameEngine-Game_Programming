@@ -82,10 +82,10 @@ namespace nu
 		// return source rectangle of tile in texture 
 		return Rect
 		{
-		(float)(column * m_tileWidth),
-		(float)(row * m_tileHeight),
-		(float)(m_tileWidth),
-		(float)(m_tileHeight)
+			(float)(column * m_tileWidth),
+			(float)(row * m_tileHeight),
+			(float)(m_tileWidth),
+			(float)(m_tileHeight)
 		};
 	}
 

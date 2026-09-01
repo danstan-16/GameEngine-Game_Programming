@@ -59,6 +59,8 @@ void SpriteGame::Update(float dt)
 
 	case SpriteGame::StartLevel:
 		m_scene->RemoveAllActors();
+		m_scene->Load("data/level.json");
+
 		SpawnPlayer();
 		m_spawnTime = 5.0f;
 		m_gameState = SpriteGame::GamePlay;
@@ -97,6 +99,7 @@ void SpriteGame::Update(float dt)
 
 void SpriteGame::Draw(nu::Renderer& renderer)
 {
+	renderer.EnableCamera(false);
 	renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/space_background.jpg", Engine::Get().GetRenderer()), Engine::Get().GetRenderer().GetWidth() * 0.5f, Engine::Get().GetRenderer().GetHeight() * 0.5f, 0.0f, 3.0f);
 
 	switch (m_gameState)
@@ -128,6 +131,7 @@ void SpriteGame::Draw(nu::Renderer& renderer)
 		break;
 	}
 
+	renderer.EnableCamera(true);
 	Game::Draw(renderer);
 }
 
@@ -139,25 +143,20 @@ void SpriteGame::SpawnPlayer()
 
 void SpriteGame::SpawnEnemy()
 {
-	int model = RandomInt(3);
-
-	if (model == 0) {
-		auto actor = Factory::Instance().Create<Actor>("Enemy01");
-		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
-		m_scene->AddActor(std::move(actor));
-	}
-	else if (model == 1)
+	int enemyIndex = RandomInt(2);
+	if (enemyIndex == 0)
 	{
-		auto actor = Factory::Instance().Create<Actor>("Enemy02");
+		auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
 		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
-	else
+	else if (enemyIndex == 1)
 	{
-		auto actor = Factory::Instance().Create<Actor>("Enemy03");
+		auto actor = Factory::Instance().Create<Actor>("FlyingEnemyPrototype");
 		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
 	}
+	
 }
 
 void SpriteGame::OnPlayerDead()

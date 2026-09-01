@@ -24,6 +24,7 @@ namespace nu
 
 	void Box2DPhysicsComponent::Update(float dt)
 	{
+		if (!m_physicsBody) Start();
 		GetOwner()->SetPosition(GetPosition());
 		GetOwner()->SetRotation(GetRotation());
 	}
