@@ -40,7 +40,7 @@
 					"linear_damping": 2.0,
 					"angular_damping": 2.0,
 					"size": [ 100, 100 ],
-					"gravity_scale": 1
+					"gravity_scale": -1
 				}
 			]
 		},

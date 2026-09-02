@@ -33,14 +33,9 @@ void Player::Update(float dt)
 		physicsComponent->ApplyTorque(rotate);
 
 		nu::Vector2 position = physicsComponent->GetPosition();
-		//position.x = nu::Wrap(0.0f, 1280.0f, position.x);
-		//position.y = nu::Wrap(0.0f, 1024.0f, position.y);
-		//physicsComponent->SetPosition(position);
 
 		nu::Engine::Get().GetRenderer().SetCamera(position);
 	}
-
-	//SetRotation(m_transform.rotation + rotate * dt);
 
 	// particle system
 	if (thrust)
@@ -71,29 +66,6 @@ void Player::Update(float dt)
 		bullet->SetTag("PlayerBullet");
 
 		m_scene->AddActor(std::move(bullet));
-
-		/*
-		BulletDesc desc;
-		desc.name = "Bullet";
-		desc.tag = "playerBullet";
-		//desc.model = Assets::bulletModel;
-		desc.texture = nu::Resources().Get<nu::Texture>("textures/bullet.png", nu::Engine::Get().GetRenderer());
-		desc.transform = m_transform;
-		desc.transform.scale = 1.0f;
-		desc.speed = 1000.0f;
-
-		// create bullet
-		Bullet* bullet = new Bullet{ desc };
-		m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
-
-		desc.transform.rotation += 20.0f;
-		bullet = new Bullet{ desc };
-		m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
-
-		desc.transform.rotation -= 40.0f;
-		bullet = new Bullet{ desc };
-		m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
-		*/
 		
 	}
 

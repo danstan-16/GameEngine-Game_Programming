@@ -20,7 +20,6 @@ namespace nu
 			actor->Update(dt);
 		}
 		// update collisions
-		//UpdateCollisions();
 
 		// remove destroyed actors
 		std::erase_if(m_actors, [](auto& actor) { return actor->m_destroyed; });

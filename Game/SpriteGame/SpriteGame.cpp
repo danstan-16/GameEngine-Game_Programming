@@ -100,7 +100,7 @@ void SpriteGame::Update(float dt)
 void SpriteGame::Draw(nu::Renderer& renderer)
 {
 	renderer.EnableCamera(false);
-	renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/space_background.jpg", Engine::Get().GetRenderer()), Engine::Get().GetRenderer().GetWidth() * 0.5f, Engine::Get().GetRenderer().GetHeight() * 0.5f, 0.0f, 3.0f);
+	renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/nature_background.jpg", Engine::Get().GetRenderer()), Engine::Get().GetRenderer().GetWidth() * 0.5f, Engine::Get().GetRenderer().GetHeight() * 0.5f, 0.0f, 0.3f);
 
 	switch (m_gameState)
 	{

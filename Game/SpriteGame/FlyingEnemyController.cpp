@@ -1,6 +1,7 @@
 #include "FlyingEnemyController.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/SpriteAnimatorRendererComponent.h"
+#include "SpriteGame.h"
 #include "Engine.h"
 
 namespace nu
@@ -56,7 +57,12 @@ namespace nu
 
 	void FlyingEnemyController::OnCollision(Actor* other)
 	{
-
+		if (other->GetTag() == "PlayerArrow")
+		{
+			SetDestroyed(true);
+			other->SetDestroyed(true);
+			((SpriteGame*)m_scene->GetGame())->AddPoints(100);
+		}
 	}
 
 	void FlyingEnemyController::Read(const json::value_t& value)

@@ -5,15 +5,15 @@
     ],
     "fileStates": {
         "ground.tsx": {
-            "scaleInDock": 3,
+            "scaleInDock": 8,
             "scaleInEditor": 1
         },
         "world.json": {
             "scale": 2.576875,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 240.01940334707737,
-                "y": 159.88357991753577
+                "x": 230.3177298083919,
+                "y": 220.42202279893283
             }
         }
     },

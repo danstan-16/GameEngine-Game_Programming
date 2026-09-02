@@ -20,7 +20,7 @@ namespace nu
 		float m_framesPerSecond = 1.0f;
 		bool m_loop = true;
 
-		unsigned int m_frame = 0.0f;
+		unsigned int m_frame = 0;
 		float m_frameTimer = 0.0f;
 
 		std::string m_textureFrameName;

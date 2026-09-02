@@ -23,6 +23,7 @@ namespace nu
 
 	void SpriteRendererComponent::Draw(const Renderer& renderer)
 	{
+		if (!m_texture) Start();
 		if (m_texture)
 		{
 			if (m_sourceRect.w > 0 && m_sourceRect.h > 0)
@@ -52,7 +53,7 @@ namespace nu
 	{
 		RendererComponent::Read(value);
 
-		JSON_READ_NAME(value, "texture", m_textureName);
+		JSON_READ_NAME(value, "texture_name", m_textureName);
 		JSON_READ_NAME(value, "flipH", m_flipH);
 
 	}
