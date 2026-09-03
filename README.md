@@ -48,9 +48,9 @@ The engine also includes DRUIA, a demo game that showcases the engine's features
 - Rendering
 
 ## Technology
-### Technology			Purpose
-C++20					Core programming language
-SDL3					Windowing, input, and platform functionality
-FMOD					Audio and sound management
-Box2D					2D physics and collision
-RapidJSON				Serialization and data management
+### Technology || Purpose
+- C++20 || Core programming language
+- SDL3 || Windowing, input, and platform functionality
+- FMOD || Audio and sound management
+- Box2D || 2D physics and collision
+- RapidJSON || Serialization and data management
