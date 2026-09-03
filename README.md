@@ -1,3 +1,5 @@
+![AngryMob]("C:\Users\dshelby\Desktop\Assignments\Quarter 4\Intro to Game Programming\Images\DRUIA_AngryMob.png".png)
+
 #**My Game Engine**
 
 A component-based 2D game engine built in C++20, designed around modular systems for rendering, audio, input, physics, and game object management.
