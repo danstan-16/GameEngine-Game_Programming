@@ -1,4 +1,4 @@
-![AngryMob](textures/DRUIA_AngryMob.png)
+
 
 #**My Game Engine**
 
