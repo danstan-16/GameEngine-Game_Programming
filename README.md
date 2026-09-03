@@ -1,4 +1,4 @@
-
+<img width="642" height="536" alt="DRUIA_AngryMob" src="https://github.com/user-attachments/assets/305b04c1-8941-4c9e-81ea-c45676a79615" />
 
 #**My Game Engine**
 
@@ -17,6 +17,8 @@ The engine also includes DRUIA, a demo game that showcases the engine's features
 - Sprite and game object rendering
 - Tilemap support
 - UI rendering
+
+  <img width="642" height="536" alt="DRUIA_StartScreen" src="https://github.com/user-attachments/assets/7be19c2c-2d53-48e9-8176-90ea6cbaf9e1" />
 
 ### Audio System
 - Powered by FMOD
@@ -48,6 +50,8 @@ The engine also includes DRUIA, a demo game that showcases the engine's features
 - Audio
 - Physics
 - Rendering
+
+  <img width="642" height="536" alt="DRUIA_StartLevel" src="https://github.com/user-attachments/assets/89e1a249-feaa-4597-a8ef-ab164342f353" />
 
 ## Technology
 ### Technology || Purpose
