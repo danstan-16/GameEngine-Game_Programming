@@ -3,40 +3,41 @@
 A component-based 2D game engine built in C++20, designed around modular systems for rendering, audio, input, physics, and game object management.
 The engine also includes DRUIA, a demo game that showcases the engine's features and demonstrates how its systems can be used to build a complete game.
 
-##Features
-###Component-Based Architecture
+## Features
+
+### Component-Based Architecture
 - Modular actors and components
 - Flexible composition of game objects
 - Systems designed to work independently
-- 
-###Rendering System
+
+### Rendering System
 - 2D rendering
 - Sprite and game object rendering
 - Tilemap support
 - UI rendering
-- 
-###Audio System
+
+### Audio System
 - Powered by FMOD
 - Sound effect and music playback
 - Centralized audio management
-- 
-###Input System
+
+### Input System
 - Keyboard and controller input
 - Centralized input handling
 - Game-specific input mapping
-- 
-###Physics System
+
+### Physics System
 - Powered by Box2D
 - 2D collision detection
 - Rigid body physics
 - Physics-driven components
-- 
-###Serialization
+
+### Serialization
 - Powered by RapidJSON
 - Game data serialization
 - Component and actor data persistence
-- 
-###Demo Game — DRUIA
+
+### Demo Game — DRUIA
 - Demonstrates the engine in a complete game environment
 - Actors
 - Components
@@ -46,8 +47,8 @@ The engine also includes DRUIA, a demo game that showcases the engine's features
 - Physics
 - Rendering
 
-##Technology
-###Technology			###Purpose
+## Technology
+### Technology			Purpose
 C++20					Core programming language
 SDL3					Windowing, input, and platform functionality
 FMOD					Audio and sound management
