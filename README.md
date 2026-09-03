@@ -1,4 +1,4 @@
-![AngryMob]("C:\Users\dshelby\Desktop\Assignments\Quarter 4\Intro to Game Programming\Images\DRUIA_AngryMob.png".png)
+![AngryMob](textures/DRUIA_AngryMob.png)
 
 #**My Game Engine**
 
