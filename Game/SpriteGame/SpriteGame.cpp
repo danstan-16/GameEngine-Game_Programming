@@ -18,7 +18,7 @@ bool SpriteGame::Initialize()
 	m_titleFont->Load("fonts/airstrike.ttf", 64);
 
 	m_titleText = new Text(Resources().GetWithID<Font>("title_font", "fonts/airstrike.ttf", 64.0f));
-	m_titleText->Create(Engine::Get().GetRenderer(), "XENON", Color{ 1.0f, 1.0f, 1.0f });
+	m_titleText->Create(Engine::Get().GetRenderer(), "DRUIA", Color{ 1.0f, 1.0f, 1.0f });
 
 	m_gameFont = new Font();
 	m_gameFont->Load("fonts/airstrike.ttf", 32);
@@ -31,9 +31,9 @@ bool SpriteGame::Initialize()
 
 	m_gameOverText = new Text(Resources().GetWithID<Font>("gameOver_font", "fonts/airstrike.ttf", 64.0f));
 
-	Engine::Get().GetAudio().AddSound("explosion", "../../Build/Assets/audio/explosion.mp3");
-	Engine::Get().GetAudio().AddSound("pewpew", "../../Build/Assets/audio/pewpew.mp3");
-
+ 	Engine::Get().GetAudio().AddSound("shoot", "audio/bow_shoot2.mp3");
+	Engine::Get().GetAudio().AddSound("gameover", "audio/game_over.wav");
+	Engine::Get().GetAudio().AddSound("dying", "audio/dying.mp3");
 
 	return true;
 }
@@ -67,7 +67,6 @@ void SpriteGame::Update(float dt)
 		break;
 
 	case SpriteGame::GamePlay:
-		//Engine::Get().GetAudio().PlaySound("theme-music");
 		m_spawnTimer -= dt;
 		if (m_spawnTimer <= 0)
 		{
@@ -123,6 +122,9 @@ void SpriteGame::Draw(nu::Renderer& renderer)
 		break;
 
 	case SpriteGame::GameOver:
+		// play game over sound
+		Engine::Get().GetAudio().PlaySound("gameover");
+
 		// draw gameover
 		m_gameOverText->Create(renderer, "GAME OVER", { 1.0f, 0.0f, 0.0f });
 		m_gameOverText->Draw(renderer, (float)renderer.GetWidth() - 850.0f, (float)renderer.GetHeight() - 900.0f);
@@ -143,24 +145,14 @@ void SpriteGame::SpawnPlayer()
 
 void SpriteGame::SpawnEnemy()
 {
-	int enemyIndex = RandomInt(2);
-	if (enemyIndex == 0)
-	{
 		auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
 		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
 		m_scene->AddActor(std::move(actor));
-	}
-	else if (enemyIndex == 1)
-	{
-		auto actor = Factory::Instance().Create<Actor>("FlyingEnemyPrototype");
-		actor->SetPosition(Vector2(RandomFloat((float)Engine::Get().GetRenderer().GetWidth()), RandomFloat((float)Engine::Get().GetRenderer().GetHeight())));
-		m_scene->AddActor(std::move(actor));
-	}
-	
 }
 
 void SpriteGame::OnPlayerDead()
 {
+	Engine::Get().GetAudio().PlaySound("dying");
 	m_lives--;
 	if (m_lives == 0)
 	{

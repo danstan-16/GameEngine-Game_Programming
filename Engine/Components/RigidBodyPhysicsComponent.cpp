@@ -65,7 +65,6 @@ namespace nu
 	Vector2 RigidBodyPhysicsComponent::GetPosition() const
 	{
 		return GetOwner()->GetTransform().position;
-		return Vector2();
 	}
 
 	void RigidBodyPhysicsComponent::SetRotation(float rotation)

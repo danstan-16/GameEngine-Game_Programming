@@ -42,12 +42,32 @@ namespace nu
 		{
 			m_rendererComponent->Play("attack");
 
-			auto arrow = nu::Factory::Instance().Create<Actor>("Projectile");
-			arrow->SetTransform(m_transform);
-			arrow->SetScale(3.0f);
-			arrow->SetTag("PlayerArrow");
+			std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
-			m_scene->AddActor(std::move(arrow));
+			if (!fireArrow)
+			{
+				nu::Engine::Get().GetAudio().PlaySound("shoot");
+				auto arrow = nu::Factory::Instance().Create<Actor>("ProjectilePrototype");
+
+				arrow->SetTransform(m_transform);
+				arrow->SetScale(3.0f);
+				arrow->SetTag("PlayerArrow");
+
+
+				if (dir < 0.0f)
+				{
+					arrow->GetComponent<SpriteRendererComponent>()->SetFlipH(true);
+					arrow->SetRotation(180);
+				}
+
+				m_scene->AddActor(std::move(arrow));
+				fireArrow = true;
+			}
+
+		}
+		else if (Engine::Get().GetInput().GetKeyReleased(SDL_SCANCODE_RETURN))
+		{
+			fireArrow = false;
 		}
 		else if (dir != 0.0f)
 		{
@@ -65,6 +85,15 @@ namespace nu
 		m_physicsComponent->SetVelocity(velocity);
 		Engine::Get().GetRenderer().SetCamera(m_physicsComponent->GetPosition());
 
+		if (m_timerOn)
+		{
+			m_deathTimer -= dt;
+			if (m_deathTimer <= 0.0f)
+			{
+				DestroyActor(m_otherCollider);
+			}
+		}
+
 		Actor::Update(dt);
 	}
 
@@ -73,11 +102,17 @@ namespace nu
 		if (other->GetTag() == "Enemy" )
 		{
 			other->OnCollision(this);
-			std::this_thread::sleep_for(std::chrono::milliseconds(500));
-			SetDestroyed(true);
-			other->SetDestroyed(true);
-			((SpriteGame*)m_scene->GetGame())->OnPlayerDead();
+			m_deathTimer = 0.6f;
+			m_timerOn = true;
+			m_otherCollider = other;
 		}
+	}
+
+	void PlayerController::DestroyActor(Actor* other)
+	{
+		SetDestroyed(true);
+		other->SetDestroyed(true);
+		((SpriteGame*)m_scene->GetGame())->OnPlayerDead();
 	}
 
 	void PlayerController::Read(const json::value_t& value)

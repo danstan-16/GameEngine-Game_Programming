@@ -53,7 +53,7 @@ namespace nu
 	{
 		RendererComponent::Read(value);
 
-		JSON_READ_NAME(value, "texture_name", m_textureName);
+		JSON_READ_NAME(value, "texture", m_textureName);
 		JSON_READ_NAME(value, "flipH", m_flipH);
 
 	}

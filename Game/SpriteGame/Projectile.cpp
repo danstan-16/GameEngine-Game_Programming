@@ -12,7 +12,8 @@ namespace nu
 		PhysicsComponent* physicsComponent = GetComponent<PhysicsComponent>();
 		if (physicsComponent)
 		{
-			Vector2 forward{ 1, 0 }; // -->
+			Vector2 forward{ 100, 0 }; // -->
+
 			Vector2 velocity = forward.Rotate(m_transform.rotation * DegToRad);
 
 			physicsComponent->SetVelocity(velocity);
